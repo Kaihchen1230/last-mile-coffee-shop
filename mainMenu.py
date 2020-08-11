@@ -23,10 +23,7 @@ class Main_Menu:
 
             "4": self.app.delete_user,
 
-            "5": self.app.sign_in,
-
-            "Q": self.app.quit
-
+            "5": self.app.sign_in
         }
 
     def display_options(self):
@@ -59,6 +56,8 @@ class Main_Menu:
         while True:
             self.display_options()
             option = input("Enter an option: ")
+            if option== "Q":
+                break
             action = self.options.get(option)
 
             if action:
