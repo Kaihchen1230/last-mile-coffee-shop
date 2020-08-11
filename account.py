@@ -48,7 +48,7 @@ class Account:
     def add_balance(self, amount):
 
         self.balance += amount
-        print(f"Current balance is: ${round(self.balance, 2)}")
+        print(f"Current balance is: ${'% .2f' % self.balance}")
 
     def add_to_shopping_cart(self, new_item):
         print(new_item)
@@ -100,8 +100,8 @@ class Account:
             self.shopping_cart = []
             print("Enjoy your food and drink :)")
             print(
-                f"Your current balance in the account: ${round(self.balance, 2)}")
+                f"Your current balance in the account: ${'% .2f' % self.balance}")
 
         else:
             print(
-                f"Sorry, your current balance on the account is: {round(self.balance, 2)}. You don't have enough of money on your account to pay for your order. Please add money to your account. Thanks.")
+                f"Sorry, your current balance on the account is: ${'% .2f' % self.balance}. You don't have enough of money on your account to pay for your order. Please add money to your account. Thanks.")
