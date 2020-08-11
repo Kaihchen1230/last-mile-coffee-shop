@@ -60,7 +60,7 @@ class Account:
         except:
             print("Only numbers are accepted")
 
-    def add_to_shpping_cart(self, new_item):
+    def add_to_shopping_cart(self, new_item):
         new_item_name, new_item_count, new_item_price = new_item
 
         for (item_name, item_count, item_price) in self.shopping_cart:
@@ -91,7 +91,7 @@ class Account:
 
             print(f"item name: {item_name}")
             print(f"item count: {item_count}")
-            print(f"item total price: {item_price")
+            print(f"item total price: {item_price}")
             total_price += item_price
 
         print("__________________________________________________________")

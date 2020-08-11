@@ -3,8 +3,7 @@ from account import Account
 
 
 class Application:
-
-        """
+    """
         Application object should have the following properties:
             - accounts: a list of Account object
             - sub_menu: a Sub_Menu object
@@ -52,7 +51,7 @@ class Application:
             try:   
                 balance= float(input("How much balance do you want to add to your account?: "))
                 if balance >= 0:
-                    account = self.Account(username, balance)
+                    account = Account(username, balance)
                     self.accountDict[username]=account
                     print("Congratulations, you've successfully created your account!")
                 else:
@@ -84,7 +83,7 @@ class Application:
                 self.accountDict[new_username] = self.accountDict[username]
                 self.accountDict.pop(username)
 
-                print(f"The username of \"{username}\" has been changed to \"{new_username}\""")
+                print(f"The username of \"{username}\" has been changed to \"{new_username}\"")
             else:
                 print(f"The account with username \"{username}\" does not exist!")
     
@@ -107,7 +106,7 @@ class Application:
             if username in self.accountDict.keys():
                 account_info = self.accountDict[username]
                 signed_In = Sub_Menu(account_info)
-                
+                signed_In.run()
             else:
                 print(f"The account with username \"{username}\" does not exist!")
 
