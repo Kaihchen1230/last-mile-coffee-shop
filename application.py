@@ -35,7 +35,7 @@ class Application:
                 - if it existed, delete it from the accounts list
                 - if it doesn't exist, then print a message for the user 
 
-            - login():
+            - sign_in():
                 - ask the user to enter the username
                 - if it existed in the accounts list, then create a Sub_Menu object and pass the Account object associated
                   with the username to the Sub_Menu object
@@ -64,7 +64,7 @@ class Application:
 
 
     def search_account(self):
-        if self.accountDict={}:
+        if self.accountDict=={}:
             print("There are no accounts in the application to search!")
         else:
             username= input("Please enter your username you're searching for: ")
@@ -72,74 +72,43 @@ class Application:
                 opened_acc=self.accountDict[username]
                 print(f"The account {username} currently has $" + opened_acc.balance + " in balance.")
             else:
-                print(f"The account with username "{username}" does not exist!")
+                print(f"The account with username \"{username}\" does not exist!")
 
     def update_account(self):
-        if self.accountDict={}:
+        if self.accountDict == {}:
             print("There are no accounts in the application to update!")
         else:
-            username= input("Please enter your username you're updating: ")
+            username = input("Please enter your username you're updating: ")
             if username in self.accountDict.keys():
-                opened_acc=self.accountDict[username]
-                new_username= input("Please enter the new username for that account")
-                
+                new_username = input("Please enter the new username for that account")
+                self.accountDict[new_username] = self.accountDict[username]
+                self.accountDict.pop(username)
 
-                print(f"The account {username} currently has $" + opened_acc.balance + " in balance.")
+                print(f"The username of \"{username}\" has been changed to \"{new_username}\""")
             else:
-                print(f"The account with username "{username}" does not exist!")
-
-
-
-
-
-
-
-
-
-        if self.userList == {}:
-            print("There are no accounts to update!")
-        else:
-            username = str(input(f"Please enter your username to update: "))
-        try:
-            if username not in accountDict.keys():
-                print("That user does not exist")
-            else:
-                user_name = str(input("What is the new account username? : "))
-                Money= float(input("What is the new amount of money in the account? : "))
-                self.userDict[username]=Users_C(user_name,Prin,acc_id)
-                return print(f"Your updated username is : \"{user_name}\"") 
-        except ValueError:
-            print("Please enter a valid number!")
-
-   
+                print(f"The account with username \"{username}\" does not exist!")
+    
     def delete_account(self):
-        if self.userList== []:
-        print("There are no more accounts to delete!")
-        else: 
-        user_id = int(input(f"Enter the ID of the user to delete: \n")) ##Add test here
-        if(user_id > len(self.userList)):
-            print('Please enter a valid user ID!')
+        if self.accountDict == {}:
+            print("There are no accounts in the application to delete!")
         else:
-            user_id = user_id - 1
-            self.userList.pop(user_id)
-            print(f"User Deleted!")
-            self.show_user()    
+            username = input("Please enter your username you're deleting: ")
+            if username in self.accountDict.keys():
+                self.accountDict.pop(username)
+                print(f"The account with username {username} has been successfully deleted!")
+            else:
+                print(f"The account with username \"{username}\" does not exist!")
 
-    def login(self):
-        username=input("Please enter your username to log in")
-        
-        
-        
-        with open('list_of_users.json', 'w') as output_file:
-            new =json.dumps(user_List,default=lambda o: o.__dict__, sort_keys=True, indent= 4)
-            json.dump(new,output_file)
-        
-  def quit(self):
-    list_of_users = self.userList
-    choice = input("Would you like to save all changes (y/n): ")
-    if choice == 'y' or choice== 'Y':
-      self.save(list_of_users)
-    sys.exit(0)
-
+    def sign_in(self):
+        if self.accountDict=={}:
+            print("There are no accounts in the application to sign in to!")
+        else:
+            username = input("Please enter your username to sign in: ")
+            if username in self.accountDict.keys():
+                account_info = self.accountDict[username]
+                signed_In = Sub_Menu(account_info)
+                
+            else:
+                print(f"The account with username \"{username}\" does not exist!")
 
 
