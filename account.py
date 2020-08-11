@@ -45,7 +45,7 @@ class Account:
         self.balance = balance
         self.shopping_cart = []
 
-    def add_balance(self):
+    def add_balance(self, price):
         try:
             amount = float(input("Plase enter the amount you want to add: "))
 
@@ -53,6 +53,7 @@ class Account:
                 raise Exception("Cannot have negavite value")
 
             self.balance += amount
+            print(f"Current balance is: ${self.balance}")
 
         except Exception as NegaviteAmountError:
             print(NegaviteAmountError)
@@ -60,9 +61,12 @@ class Account:
         except:
             print("Only numbers are accepted")
 
-    def add_to_shpping_cart(self, new_item):
-        new_item_name, new_item_count, new_item_price = new_item
-
+    def add_to_shopping_cart(self, price):
+        new_item_name = input(
+            "Which item would you like to add to the shopping cart: ").lower()
+        new_item_count = int(input("How many of those: "))
+        new_item_price = price[new_item_name] * new_item_count
+        new_item = (new_item_name, new_item_count, new_item_price)
         for (item_name, item_count, item_price) in self.shopping_cart:
 
             if item_name == new_item_name:
@@ -71,7 +75,8 @@ class Account:
         else:
             self.shopping_cart.append(new_item)
 
-    def remove_from_shopping_cart(self, target_item_name):
+    def remove_from_shopping_cart(self, price):
+        target_item_name = input("Which item would you like to remove?")
 
         for i in range(len(self.shopping_cart)):
 
@@ -84,20 +89,20 @@ class Account:
         else:
             print(f"{target_item_name} doesn't exist in your shopping cart.")
 
-    def display_shopping_cart(self):
+    def display_shopping_cart(self, price):
 
         total_price = 0
         for (item_name, item_count, item_price) in self.shopping_cart:
 
             print(f"item name: {item_name}")
             print(f"item count: {item_count}")
-            print(f"item total price: {item_price")
+            print(f"item total price: {item_price}")
             total_price += item_price
 
         print("__________________________________________________________")
         print(f"total price: ${total_price}")
 
-    def checkout(self):
+    def checkout(self, price):
 
         total_price = 0
         for (item_name, item_count, item_price) in self.shopping_cart:
@@ -108,6 +113,7 @@ class Account:
             self.balance -= total_price
             self.shopping_cart = []
             print("Enjoy your food and drink :)")
+            print(f"Your current balance in the account: ${self.balance}")
 
         else:
             print("Sorry, you don't have enough of money on your account to pay for your order. Please add money to your account. Thanks.")

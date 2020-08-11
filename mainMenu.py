@@ -15,15 +15,13 @@ class Main_Menu:
         self.app = Application()
         self.options = {
 
-            "1": self.app.add_user,
+            "1": self.app.create_account,
 
-            "2": self.app.update_user,
+            "2": self.app.update_account,
 
-            "3": self.app.show_user,
+            "3": self.app.delete_account,
 
-            "4": self.app.delete_user,
-
-            "5": self.app.sign_in
+            "4": self.app.sign_in
         }
 
     def display_options(self):
@@ -35,21 +33,14 @@ class Main_Menu:
  
              1. Create an account
  
-             2. Update account information(s)
- 
-             3. View current account(s)
+             2. Update account username
 
-             4. Delete account(s)
+             3. Delete account(s)
+
+             4. Sign in to your account
 
              Q. Quit
 
-             *************************************
-
-             5. Sign in to your account
-
-             *************************************
-
- 
              """)
 
     def run(self):
