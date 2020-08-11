@@ -3,11 +3,11 @@ from account import Account
 
 class Sub_Menu:
 
-    def __init__(account):
+    def __init__(self, account):
         self.app = account
-        self.price= {'coffee':1, 'latte':2, 'cappuccino': 2, 'donut': 1}
+        self.price = {'coffee': 1, 'latte': 2, 'cappuccino': 2, 'donut': 1}
         self.options = {
-        
+
             "1": self.order_menu,
 
             "2": self.app.add_balance,
@@ -20,7 +20,7 @@ class Sub_Menu:
 
             "6": self.app.checkout
         }
-      
+
     def display_options(self):
         print(""" 
             ************* LMTD Coffee Shop *************
@@ -49,15 +49,24 @@ class Sub_Menu:
         while True:
             self.display_options()
             option = input("Enter an option: ")
-            if option== "Q":
-                break
-            action = self.options.get(option)
 
+            if option == "Q":
+
+                break
+
+            if option == "1":
+
+                self.order_menu()
+                continue
+
+            action = self.options.get(option)
             if action:
                 action(self.price)
+
             else:
-                print("{0} is not a valid option, Please try again".format(option))
-    
+                print(
+                    "{0} is not a valid option, Please try again".format(option))
+
     def order_menu(self):
         print("""
             Coffee $1
