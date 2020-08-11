@@ -5,19 +5,22 @@ class Sub_Menu:
 
     def __init__(account):
         self.app = account
+        self.price= {'coffee':1, 'latte':2, 'cappuccino': 2, 'donut': 1}
         self.options = {
+        
+            "1": self.order_menu,
 
-            "1": self.app.add_balance,
+            "2": self.app.add_balance,
 
-            "2": self.app.add_to_shopping_cart,
+            "3": self.app.add_to_shopping_cart,
 
-            "3": self.app.remove_from_shopping_cart,
+            "4": self.app.remove_from_shopping_cart,
 
-            "4": self.app.display_shopping_cart,
+            "5": self.app.display_shopping_cart,
 
-            "5": self.app.checkout
+            "6": self.app.checkout
         }
-
+      
     def display_options(self):
         print(""" 
             ************* LMTD Coffee Shop *************
@@ -25,16 +28,18 @@ class Sub_Menu:
              You have successfully signed in! 
 
              Please choose one of the options below:
- 
-             1. Add balance to your account
- 
-             2. Add order(s) to your shopping cart
- 
-             3. Remove order(s) from your shopping cart
 
-             4. Display your current shopping cart
+             1. View our menu
+ 
+             2. Add balance to your account
+ 
+             3. Add order(s) to your shopping cart
+ 
+             4. Remove order(s) from your shopping cart
 
-             5. Check out from the store
+             5. Display your current shopping cart
+
+             6. Check out from the store
 
              Q. Quit
 
@@ -49,17 +54,14 @@ class Sub_Menu:
             action = self.options.get(option)
 
             if action:
-                action()
+                action(self.price)
             else:
                 print("{0} is not a valid option, Please try again".format(option))
-
-
-    """
-        Sub_Menu object should have the following properties:
-            - Account object (passed in from the application)
-
-        Sub_Menu is the frontend for the logged in user
-    """
-
-    def __init__(self):
-        pass
+    
+    def order_menu(self):
+        print("""
+            Coffee $1
+            Latte $2
+            Cappuccino $2
+            Donut $1
+            """)

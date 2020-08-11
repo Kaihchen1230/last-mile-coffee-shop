@@ -33,7 +33,7 @@ class Main_Menu:
  
              1. Create an account
  
-             2. Update account information(s)
+             2. Update account username
 
              3. Delete account(s)
 

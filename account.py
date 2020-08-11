@@ -45,7 +45,7 @@ class Account:
         self.balance = balance
         self.shopping_cart = []
 
-    def add_balance(self):
+    def add_balance(self,price):
         try:
             amount = float(input("Plase enter the amount you want to add: "))
 
@@ -60,8 +60,10 @@ class Account:
         except:
             print("Only numbers are accepted")
 
-    def add_to_shopping_cart(self, new_item):
-        new_item_name, new_item_count, new_item_price = new_item
+    def add_to_shopping_cart(self, price):
+        new_item_name= input("Which item would you like to add to the shopping cart")
+        new_item_count= int(input("How many of those?"))
+        new_item_price = price[new_item_name] * new_item_count
 
         for (item_name, item_count, item_price) in self.shopping_cart:
 
@@ -71,7 +73,8 @@ class Account:
         else:
             self.shopping_cart.append(new_item)
 
-    def remove_from_shopping_cart(self, target_item_name):
+    def remove_from_shopping_cart(self, price):
+        target_item_name=input("Which item would you like to remove?")
 
         for i in range(len(self.shopping_cart)):
 
@@ -84,7 +87,7 @@ class Account:
         else:
             print(f"{target_item_name} doesn't exist in your shopping cart.")
 
-    def display_shopping_cart(self):
+    def display_shopping_cart(self,price):
 
         total_price = 0
         for (item_name, item_count, item_price) in self.shopping_cart:
@@ -97,7 +100,7 @@ class Account:
         print("__________________________________________________________")
         print(f"total price: ${total_price}")
 
-    def checkout(self):
+    def checkout(self, price):
 
         total_price = 0
         for (item_name, item_count, item_price) in self.shopping_cart:

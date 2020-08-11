@@ -79,7 +79,7 @@ class Application:
         else:
             username = input("Please enter your username you're updating: ")
             if username in self.accountDict.keys():
-                new_username = input("Please enter the new username for that account")
+                new_username = input("Please enter the new username for that account: ")
                 self.accountDict[new_username] = self.accountDict[username]
                 self.accountDict.pop(username)
 
