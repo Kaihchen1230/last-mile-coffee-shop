@@ -47,7 +47,9 @@ class Main_Menu:
         while True:
             self.display_options()
             option = input("Enter an option: ")
-            if option== "Q":
+            if option.lower() == "q":
+                print("Now saved all of the data to file")
+                self.app.save()
                 break
             action = self.options.get(option)
 
