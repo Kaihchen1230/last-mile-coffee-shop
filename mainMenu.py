@@ -13,6 +13,7 @@ class Main_Menu:
 
     def __init__(self):
         self.app = Application()
+        self.app.load()
         self.options = {
 
             "1": self.app.create_account,
@@ -50,12 +51,13 @@ class Main_Menu:
     def run(self):
         while True:
             self.display_options()
-            self.app.load()
+
             option = input("Enter an option: ")
             if option.lower() == "q":
                 print("Now saved all of the data to file")
                 self.app.save()
                 break
+
             action = self.options.get(option)
 
             if action:

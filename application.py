@@ -98,13 +98,9 @@ class Application:
 
                 self.accountDict[new_username] = self.accountDict.pop(username)
 
-                print("self.accountDict[new_username]: ",
-                      self.accountDict[new_username])
                 print(
                     f"The username of \"{username}\" has been changed to \"{new_username}\"\n")
 
-                print("now display all accounts: ")
-                self.display_accounts()
             else:
                 print(
                     f"The account with username \"{username}\" does not exist!\n")
@@ -152,12 +148,12 @@ class Application:
 
         return decoded_accounts
 
-    def display_accounts(self):
+    # def display_accounts(self):
 
-        for ueranme, account_info in self.accountDict.items():
+    #     for ueranme, account_info in self.accountDict.items():
 
-            print('this is ueranme: ', ueranme)
-            print('this is account_info: ', account_info)
+    #         print('this is ueranme: ', ueranme)
+    #         print('this is account_info: ', account_info)
 
     def load(self):
         with open("accounts.json", "r") as accounts_json:
@@ -168,7 +164,6 @@ class Application:
 
     def save(self):
 
-        print('this is in save: ', self.display_accounts())
         data = json.dumps(list(map(
             lambda username: self.accountDict[username].__dict__, self.accountDict.keys())))
 
