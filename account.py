@@ -1,4 +1,7 @@
 # Class on the user information
+import time
+
+
 class Account:
 
     """
@@ -51,7 +54,6 @@ class Account:
         print(f"Current balance is: ${'% .2f' % self.balance}")
 
     def add_to_shopping_cart(self, new_item):
-        print(new_item)
         (new_item_name, new_item_count, new_item_price) = new_item
 
         for (item_name, item_count, item_price) in self.shopping_cart:
@@ -80,13 +82,14 @@ class Account:
         total_price = 0
         for (item_name, item_count, item_price) in self.shopping_cart:
 
-            print(f"item name: {item_name}")
-            print(f"item count: {item_count}")
-            print(f"item total price: {item_price}")
+            print(
+                f"item name: {item_name}   |   item count: {item_count}   |  item total price: ${'% .2f' % item_price}")
             total_price += item_price
 
         print("__________________________________________________________")
-        print(f"total price: ${total_price}")
+        print(f"total price: ${'% .2f' % total_price}")
+
+        time.sleep(2)
 
     def checkout(self):
 
