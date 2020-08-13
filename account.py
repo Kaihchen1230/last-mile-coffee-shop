@@ -54,22 +54,13 @@ class Account:
 
     @classmethod
     def from_json(cls, data):
-        username, balance, shopping_cart = "", 0, []
-        for key, value in data.items():
-            # print(f"the type of {key}: {type(key)}")
-            # print(f"this is key: {key}")
-            # print(f"the type of {value}: {type(value)}")
-            # print(f"this is value: {value}")
 
-            if key == "username":
-                username = value
+        username, balance, shopping_cart = data["username"], data["balance"], [
+        ]
 
-            elif key == "balance":
-                balance = float(value)
-
-            elif key == "shopping_cart" and len(value) > 0:
-                for item in value:
-                    shopping_cart.append(tuple(item))
+        for item in data["shopping_cart"]:
+            tuple_item = tuple(item)
+            shopping_cart.append(tuple_item)
 
         return cls(username=username,
                    balance=balance, shopping_cart=shopping_cart)
