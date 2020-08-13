@@ -47,11 +47,13 @@ class Main_Menu:
         while True:
             self.display_options()
             option = input("Enter an option: ")
-            if option== "Q":
+            if option.lower() == "q":
+                print("Now saved all of the data to file")
+                self.app.save()
                 break
             action = self.options.get(option)
 
             if action:
                 action()
             else:
-                print("{0} is not a valid option, Please try again".format(option))
+                print("{0} is not a valid option, please try again!".format(option))
