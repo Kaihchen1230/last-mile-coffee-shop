@@ -1,5 +1,6 @@
 # Class on the user information
 import time
+import json
 
 
 class Account:
@@ -53,7 +54,25 @@ class Account:
 
     @classmethod
     def from_json(cls, data):
-        return cls(**data)
+        username, balance, shopping_cart = "", 0, []
+        for key, value in data.items():
+            # print(f"the type of {key}: {type(key)}")
+            # print(f"this is key: {key}")
+            # print(f"the type of {value}: {type(value)}")
+            # print(f"this is value: {value}")
+
+            if key == "username":
+                username = value
+
+            elif key == "balance":
+                balance = float(value)
+
+            elif key == "shopping_cart" and len(value) > 0:
+                for item in value:
+                    shopping_cart.append(tuple(item))
+
+        return cls(username=username,
+                   balance=balance, shopping_cart=shopping_cart)
 
     def add_balance(self, amount):
 
@@ -63,18 +82,21 @@ class Account:
 
     def add_to_shopping_cart(self, new_item):
         (new_item_name, new_item_count, new_item_price) = new_item
-
         for i in range(len(self.shopping_cart)):
-            item=self.shopping_cart[i]
-            (item_name,item_count,item_price)= item
+
+            item = self.shopping_cart[i]
+            (item_name, item_count, item_price) = item
             if item_name == new_item_name:
                 item_count += new_item_count
                 item_price += new_item_price
+                self.shopping_cart.pop(i)
+                self.shopping_cart.append((item_name, item_count, item_price))
+                break
         else:
             self.shopping_cart.append(new_item)
 
         print(f"this is your current shopping cart: {self.shopping_cart}\n")
-        time.sleep(2)
+        # time.sleep(2)
 
     def remove_from_shopping_cart(self, target_name):
 
@@ -85,9 +107,13 @@ class Account:
 
             if item_name == target_name:
                 self.shopping_cart.pop(i)
+                break
 
         else:
-            print(f"{target_name} doesn't exist in your shopping cart.")
+            print(f"\"{target_name}\" doesn't exist in your shopping cart.")
+
+        print(f"this is your current shopping cart: {self.shopping_cart}\n")
+        # time.sleep(2)
 
     def display_shopping_cart(self):
 
@@ -105,19 +131,24 @@ class Account:
     def checkout(self):
 
         total_price = 0
-        for (item_name, item_count, item_price) in self.shopping_cart:
 
-            total_price += item_price
+        if len(self.shopping_cart) > 0:
 
-        if total_price <= self.balance:
-            self.balance -= total_price
-            self.shopping_cart = []
-            print("Enjoy your food and drink :)")
-            print(
-                f"Your current balance in the account: ${'% .2f' % self.balance}\n")
+            for (item_name, item_count, item_price) in self.shopping_cart:
+
+                total_price += item_price
+
+            if total_price <= self.balance:
+                self.balance -= total_price
+                self.shopping_cart = []
+                print("Enjoy your food and drink :)")
+                print(
+                    f"Your current balance in the account: ${'% .2f' % self.balance}\n")
+
+            else:
+                print(
+                    f"Sorry, your current balance on the account is: ${'% .2f' % self.balance}. You don't have enough of money on your account to pay for your order. Please add money to your account. Thanks.\n")
 
         else:
-            print(
-                f"Sorry, your current balance on the account is: ${'% .2f' % self.balance}. You don't have enough of money on your account to pay for your order. Please add money to your account. Thanks.\n")
-
+            print("You don't have anything in your shopping cart")
         time.sleep(2)

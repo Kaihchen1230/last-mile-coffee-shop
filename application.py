@@ -141,9 +141,10 @@ class Application:
     def from_json(cls, data):
 
         accounts = list(map(Account.from_json, data))
+
         decoded_accounts = {}
         for account in accounts:
-            # print('account: ', account)
+            print('account: ', account)
             decoded_accounts[account.username] = account
 
         return decoded_accounts
@@ -158,16 +159,18 @@ class Application:
     def load(self):
         with open("accounts.json", "r") as accounts_json:
             data = json.load(accounts_json)
-            decoded_accounts = Application.from_json(json.loads(data))
+            # decoded_accounts = Application.from_json(json.loads(data))
+            decoded_accounts = Application.from_json(data)
+            # print(decoded_accounts)
+
             self.accountDict = decoded_accounts
 
     def save(self):
 
-        data = json.dumps(list(map(
-            lambda username: self.accountDict[username].__dict__, self.accountDict.keys())))
+        # data = json.dumps(list(map(
+        #     lambda username: self.accountDict[username].__dict__, self.accountDict.keys())))
 
         with open("accounts.json", "w") as accounts_json:
 
-            json.dump(data, accounts_json)
-
-
+            json.dump(list(map(
+                lambda username: self.accountDict[username].__dict__, self.accountDict.keys())), accounts_json, indent=6)
