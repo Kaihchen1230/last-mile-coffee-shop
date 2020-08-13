@@ -96,7 +96,7 @@ class Account:
             self.shopping_cart.append(new_item)
 
         print(f"this is your current shopping cart: {self.shopping_cart}\n")
-        time.sleep(2)
+        # time.sleep(2)
 
     def remove_from_shopping_cart(self, target_name):
 
@@ -113,7 +113,7 @@ class Account:
             print(f"\"{target_name}\" doesn't exist in your shopping cart.")
 
         print(f"this is your current shopping cart: {self.shopping_cart}\n")
-        time.sleep(2)
+        # time.sleep(2)
 
     def display_shopping_cart(self):
 
