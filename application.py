@@ -169,5 +169,3 @@ class Application:
         with open("accounts.json", "w") as accounts_json:
 
             json.dump(data, accounts_json)
-
-

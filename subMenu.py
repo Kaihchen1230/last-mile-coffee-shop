@@ -1,4 +1,5 @@
 from account import Account
+import time
 
 
 class Sub_Menu:
@@ -106,7 +107,18 @@ class Sub_Menu:
         else:
             print(f"\"{item_name}\" not in the list")
 
+        time.sleep(2)
+
     def remove_from_shopping_cart(self):
 
-        target_name = input("Enter the name of the item: ").lower()
-        self.account.remove_from_shopping_cart(target_name)
+        if len(self.account.shopping_cart) > 0:
+
+            target_name = input("Enter the name of the item: ").lower()
+            if target_name in self.price.keys():
+                self.account.remove_from_shopping_cart(target_name)
+            else:
+                print(f"\"{target_name}\" not in the list")
+        else:
+            print("You don't have anything in your shopping cart")
+
+        time.sleep(2)
