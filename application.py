@@ -111,11 +111,11 @@ class Application:
         if self.accountDict == {}:
             print("There are no accounts in the application to delete!\n")
         else:
-            username = input("Please enter your username you're deleting: ")
+            username = input("Please enter the username you're deleting: ")
             if username in self.accountDict.keys():
                 self.accountDict.pop(username)
                 print(
-                    f"The account with username {username} has been successfully deleted!\n")
+                    f"The account with username \"{username}\" has been successfully deleted!")
             else:
                 print(
                     f"The account with username \"{username}\" does not exist!\n")
@@ -158,7 +158,6 @@ class Application:
     def load(self):
         with open("accounts.json", "r") as accounts_json:
             data = json.load(accounts_json)
-
             decoded_accounts = Application.from_json(json.loads(data))
             self.accountDict = decoded_accounts
 
@@ -170,3 +169,5 @@ class Application:
         with open("accounts.json", "w") as accounts_json:
 
             json.dump(data, accounts_json)
+
+

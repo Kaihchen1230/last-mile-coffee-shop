@@ -64,8 +64,9 @@ class Account:
     def add_to_shopping_cart(self, new_item):
         (new_item_name, new_item_count, new_item_price) = new_item
 
-        for (item_name, item_count, item_price) in self.shopping_cart:
-
+        for i in range(len(self.shopping_cart)):
+            item=self.shopping_cart[i]
+            (item_name,item_count,item_price)= item
             if item_name == new_item_name:
                 item_count += new_item_count
                 item_price += new_item_price
@@ -94,7 +95,7 @@ class Account:
         for (item_name, item_count, item_price) in self.shopping_cart:
 
             print(
-                f"item name: {item_name}   |   item count: {item_count}   |  item total price: ${'% .2f' % item_price}")
+                f"Item name: {item_name}   |   Item count: {item_count}   |  Item total price: ${'% .2f' % item_price}")
             total_price += item_price
 
         print("__________________________________________________________")

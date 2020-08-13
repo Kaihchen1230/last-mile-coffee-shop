@@ -13,7 +13,7 @@ class Main_Menu:
 
     def __init__(self):
         self.app = Application()
-        self.app.load()
+        self.app.load() #gets called from application.py
         self.options = {
 
             "1": self.app.create_account,
@@ -63,4 +63,4 @@ class Main_Menu:
             if action:
                 action()
             else:
-                print("{0} is not a valid option, Please try again".format(option))
+                print("{0} is not a valid option, please try again!".format(option))
