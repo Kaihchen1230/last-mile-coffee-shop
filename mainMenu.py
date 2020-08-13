@@ -13,15 +13,18 @@ class Main_Menu:
 
     def __init__(self):
         self.app = Application()
+        self.app.load() #gets called from application.py
         self.options = {
 
             "1": self.app.create_account,
 
             "2": self.app.update_account,
 
-            "3": self.app.delete_account,
+            "3": self.app.search_account,
 
-            "4": self.app.sign_in
+            "4": self.app.delete_account,
+
+            "5": self.app.sign_in
         }
 
     def display_options(self):
@@ -35,9 +38,11 @@ class Main_Menu:
  
              2. Update account username
 
-             3. Delete account(s)
+             3. Search for account
 
-             4. Sign in to your account
+             4. Delete account(s)
+
+             5. Sign in to your account
 
              Q. Quit
 
@@ -46,11 +51,13 @@ class Main_Menu:
     def run(self):
         while True:
             self.display_options()
+
             option = input("Enter an option: ")
             if option.lower() == "q":
                 print("Now saved all of the data to file")
                 self.app.save()
                 break
+
             action = self.options.get(option)
 
             if action:

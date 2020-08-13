@@ -1,4 +1,7 @@
 # Class on the user information
+import time
+
+
 class Account:
 
     """
@@ -40,15 +43,23 @@ class Account:
                 - if the balance property is not enough, display a message for user to add more money
     """
 
-    def __init__(self, username, balance):
+    def __init__(self, username, balance, shopping_cart=[]):
         self.username = username
         self.balance = balance
-        self.shopping_cart = []
+        self.shopping_cart = shopping_cart
+
+    def __str__(self):
+        return(f"this is username: {self.username}      this is balance: {self.balance}         this is shopping_cart: {self.shopping_cart}")
+
+    @classmethod
+    def from_json(cls, data):
+        return cls(**data)
 
     def add_balance(self, amount):
 
         self.balance += amount
-        print(f"Current balance is: ${round(self.balance, 2)}")
+        print(f"Current balance is: ${'% .2f' % self.balance}\n")
+        time.sleep(2)
 
     def add_to_shopping_cart(self, new_item):
         (new_item_name, new_item_count, new_item_price) = new_item
@@ -61,6 +72,9 @@ class Account:
                 item_price += new_item_price
         else:
             self.shopping_cart.append(new_item)
+
+        print(f"this is your current shopping cart: {self.shopping_cart}\n")
+        time.sleep(2)
 
     def remove_from_shopping_cart(self, target_name):
 
@@ -80,13 +94,13 @@ class Account:
         total_price = 0
         for (item_name, item_count, item_price) in self.shopping_cart:
 
-            print(f"Item name: {item_name}")
-            print(f"Item count: {item_count}")
-            print(f"Item total price: {item_price}")
+            print(
+                f"Item name: {item_name}   |   Item count: {item_count}   |  Item total price: ${'% .2f' % item_price}")
             total_price += item_price
 
         print("__________________________________________________________")
-        print(f"Total price: ${total_price}")
+        print(f"total price: ${'% .2f' % total_price}\n")
+        time.sleep(2)
 
     def checkout(self):
 
@@ -100,8 +114,10 @@ class Account:
             self.shopping_cart = []
             print("Enjoy your food and drink :)")
             print(
-                f"Your current balance in the account: ${round(self.balance, 2)}")
+                f"Your current balance in the account: ${'% .2f' % self.balance}\n")
 
         else:
             print(
-                f"Sorry, your current balance on the account is: {round(self.balance, 2)}. You don't have enough of money on your account to pay for your order. Please add money to your account. Thanks.")
+                f"Sorry, your current balance on the account is: ${'% .2f' % self.balance}. You don't have enough of money on your account to pay for your order. Please add money to your account. Thanks.\n")
+
+        time.sleep(2)
