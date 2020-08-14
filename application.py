@@ -140,14 +140,9 @@ class Application:
     @classmethod
     def from_json(cls, data):
 
-        # print('this is data: ', data)
-        accounts = data
-
-        # accounts = list(map(Account.from_json, data))
-
+        # data is the accounts from the accounts.json
         decoded_accounts = {}
-        for username, account in accounts.items():
-            # print('account: ', account)
+        for username, account in data.items():
             decoded_accounts[username] = Account.from_json(account)
 
         return decoded_accounts
@@ -162,26 +157,18 @@ class Application:
     def load(self):
         with open("accounts.json", "r") as accounts_json:
             data = json.load(accounts_json)
-            # decoded_accounts = Application.from_json(json.loads(data))
             decoded_accounts = Application.from_json(data)
-            # print(decoded_accounts)
-
             self.accountDict = decoded_accounts
 
     def save(self):
 
         with open("accounts.json", "w") as accounts_json:
-
             serilizated_data = self.serilization()
             json.dump(serilizated_data, accounts_json,
                       sort_keys=True, indent=4)
 
     def serilization(self):
-
         serilizated = {}
-
         for username, account in self.accountDict.items():
-
             serilizated[username] = account.__dict__
-
         return serilizated
