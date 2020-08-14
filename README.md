@@ -5,3 +5,4 @@
 - Project manager: Anish
 - Tech Lead: Kai
 - Developers: Sabina & Sabrina
+- Bug Master: Dawa 
