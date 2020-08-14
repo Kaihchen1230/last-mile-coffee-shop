@@ -1,1 +1,7 @@
-{}
+{
+    "kappa": {
+        "balance": 20.0,
+        "shopping_cart": [],
+        "username": "kappa"
+    }
+}
